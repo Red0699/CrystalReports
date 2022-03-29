@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "ReporteParam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    jQuery(documento).ready(function () {
+        cargarCombo();
+
+        //Boton Incrustar
+
+    })
+    
+
+
+    function cargarCombo() {
+        $.ajax({
+            url: "@Url.Action("GetCategorias","Categorias")",
+            dataType: "JSON",
+            type:"GET"
+        }).done(function (resp) {
+            console.log(resp);
+
+            var data = JSON.parse(JSON.stringify(resp));
+            var opciones = "";
+            for (i = 0; i < data.resultado.length; i++) {
+                opciones += "<option value ='" + data.resultado[i] + "'>" + data.resultado[i] + "</option>";
+            }
+            $("#comboParametro").append(opciones);
+        }).fail(function () {
+
+        });
+    }
+</script>
+
+<h2>ReporteSimple</h2>
+<hr />
+
+<input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
+<input type="button" id="btnDescargar" value="Descargar Reporte" class="btn btn-warning" />
+<br />
+<br /><label class="label-danger" style="color:white;">Parametro</label>
+<select id="comboParametro" class="form-control">
+    <option value="">Seleccione...</option>
+</select>
+
+<hr />
+
+<iframe id="reportParam" style="width:100%; height:600px;" frameborder="0" scrolling="yes">
+</iframe>
+
