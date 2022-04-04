@@ -14,7 +14,7 @@ namespace CrystalReports.Controllers
 
         public JsonResult GetCategorias()
         {
-            var cats = contexto.categorias.Select(x => x.nombrecat).ToList();
+            var cats = contexto.categorias.Select(x => x.nombrecat).ToList(); //accedor al contexto de la tabla 
             return Json(new { resultado = cats },JsonRequestBehavior.AllowGet);
         }
 

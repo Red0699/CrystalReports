@@ -9,13 +9,13 @@
     jQuery(document).ready(function () {
 
         //Boton Inclustar Reporte
-        $("#btnIncrustar").on("click", function () {
-            $("#reportSimple").attr("src", "VerReporte").load();
+        $("#btnIncrustar").on("click", function () { //Responde a un evento
+            $("#reportSimple").attr("src", "VerReporte").load(); //Se referencia al iframe y se referencia el atributo del ActionResult de ProductController
         });
 
         //Boton Descargar Reporte
         $("#btnDescargar").on("click", function () {
-            window.open("VerReporte");
+            window.open("VerReporte"); //Llamo al ActionResult de ProductController
         });
     });
 </script>
@@ -23,10 +23,12 @@
 <h2>ReporteSimple</h2>
 <hr />
 
+<!-- Vista de la pagina -->
 <input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
 <input type="button" id="btnDescargar" value="Descargar Reporte" class="btn btn-warning" />
 <hr />
 
+<!-- Definir el area donde se incrustara el documento pdf del crystal reports-->
 <iframe id="reportSimple" style="width:100%; height:600px;" frameborder="0" scrolling="yes">
 </iframe>
 

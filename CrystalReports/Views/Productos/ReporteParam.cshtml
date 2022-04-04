@@ -6,13 +6,32 @@
 
 <script>
 
-    jQuery(documento).ready(function () {
+    jQuery(document).ready(function () {
         cargarCombo();
+        var combo = $("#comboParametro");
 
         //Boton Incrustar
+        $("#btnIncrustar").on("click", function () {
+            if (combo.val() == "") {
+                alert('Debe seleccionar un parametro para el reporte');
+            } else {
+                var item = combo.val();
+                var url = "@Url.Action("VerReporteParam","Productos")?parametro=" + item;
+                $("#reportParam").attr("src", url).load();
+            }
+        });
 
-    })
-    
+        //Boton Descargar
+        $("#btnDescargar").on("click", function () {
+            if (combo.val() == "") {
+                alert('Debe seleccionar un parametro para el reporte');
+            } else {
+                var item = combo.val();
+                var url = "@Url.Action("VerReportesParam","Productos")?parametro=" + item;
+                window.open(url);
+            }
+        });
+    });
 
 
     function cargarCombo() {
@@ -35,7 +54,7 @@
     }
 </script>
 
-<h2>ReporteSimple</h2>
+<h2>ReporteParametrizado</h2>
 <hr />
 
 <input type="button" id="btnIncrustar" value="Ver Reporte" class="btn btn-success" />
